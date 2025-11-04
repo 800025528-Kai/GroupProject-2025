@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Character{
     private String name;
     private double[] stats;
@@ -13,11 +15,16 @@ public class Character{
     public String getName(){
         return name;
     }
-    public double getStat(int index){
-        return stats[index];
+    public double[] getStat(){
+        return stats;
     }
     public void addBuff(StatusEffect newBuff){
         buffs.add(newBuff);
+    }
+
+    @Override
+    public String toString(){
+        return name;
     }
     
 }
