@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Battle {
     private ArrayList<Character> teammates;
     private ArrayList<Character> enemies;

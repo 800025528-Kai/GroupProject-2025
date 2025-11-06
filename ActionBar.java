@@ -12,6 +12,7 @@ public class ActionBar {
     }
 
     public void addCharacter(Character c) {
+        //dw abt it for now ill do smth weird with lists
         actionValue.add(10000/c.getStat[3]);
         double temp = 0.0;
         int length = actionValue.size();
