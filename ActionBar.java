@@ -11,8 +11,17 @@ public class ActionBar {
         this.actionValue = new ArrayList<>();
     }
 
-    public void addCharacter(Character c, double value) {
-        this.actionOrder.add(c);
-        this.actionValue.add(value);
+    public void addCharacter(Character c) {
+        actionValue.add(10000/c.getStat[3]);
+        double temp = 0.0;
+        int length = actionValue.size();
+        for (int i = 0; i < length; i++){
+            if (actionValue.get(length-1)<actionValue.get(i)){
+                temp = actionValue.get(i);
+                actionValue.set(i, actionValue.get(length-1));
+            }
+        }
     }
+
+    // action value = 10000/spd, reset after character moves
 }

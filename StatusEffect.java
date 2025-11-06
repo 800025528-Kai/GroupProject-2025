@@ -12,7 +12,7 @@ public class StatusEffect{
         return type;
     }
     public double getMultiplier(){
-        return multiplier; 
+        return multiplier;
     }
     public double getFlat(){
         return flat;
