@@ -1,28 +1,30 @@
 import java.util.ArrayList;
 
 public class ActionBar {
-    private ArrayList<Character> actionOrder;
-    private ArrayList<Double> actionValue;
-    // each index corresponds to each other
-    // e.g. actionOrder.get(0) has actionValue.get(0) as its action value
+    private ArrayList<Pair> actionOrder;
+    // Character action value pairs
 
     public ActionBar() {
-        this.actionOrder = new ArrayList<>();
-        this.actionValue = new ArrayList<>();
+        this.actionOrder = new ArrayList<Pair>();
+    }
+
+    private int searchInsertIndex(double AV) {
+        for (int i = 0; i < actionOrder.size(); i++) {
+            if (AV < actionOrder.get(i).getAV()) {
+                return i;
+            }
+        }
+        return actionOrder.size();
     }
 
     public void addCharacter(Character c) {
         //dw abt it for now ill do smth weird with lists
-        actionValue.add(10000/c.getStat[3]);
-        double temp = 0.0;
-        int length = actionValue.size();
-        for (int i = 0; i < length; i++){
-            if (actionValue.get(length-1)<actionValue.get(i)){
-                temp = actionValue.get(i);
-                actionValue.set(i, actionValue.get(length-1));
-            }
-        }
+        double AV = 10000 / c.getStat()[3];
+        Pair newPair = new Pair(c, AV);
+        actionOrder.add(searchInsertIndex(AV), newPair);
     }
 
-    // action value = 10000/spd, reset after character moves
+    public ArrayList<Pair> getActionOrder() {
+        return actionOrder;
+    }
 }

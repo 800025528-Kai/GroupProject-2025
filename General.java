@@ -1,13 +1,13 @@
 public class General {
-    // element-wise dot product of two arrays
-    static double[] dot(double[] a, double[] b){
+    // element-wise element wise product of two arrays
+    static double[] eleWiseProd(double[] a, double[] b){
         double[] result = new double[a.length];
         for (int i = 0; i < a.length; i++){
             result[i] = a[i] * b[i];
         }
         return result;
     }
-    static int[] dot(int[] a, int[] b){
+    static int[] eleWiseProd(int[] a, int[] b){
         int[] result = new int[a.length];
         for (int i = 0; i < a.length; i++){
             result[i] = a[i] * b[i];

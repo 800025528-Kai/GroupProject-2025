@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Random;
 
 public class Character{
     private String name;
@@ -13,6 +14,13 @@ public class Character{
             stats[i] = charStats[i];
         }
     }
+
+    public Character(){
+        name = "default";
+        stats = new double[]{100, 10, 10, 100, 5, 50, 0, 1, 100, 10, 0, 0};
+        buffs = new ArrayList<StatusEffect>();
+    }
+
     public String getName(){
         return name;
     }
