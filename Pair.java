@@ -11,4 +11,7 @@ public class Pair {
     public double getAV() {
         return second;
     }
-}
+    public void setAV(double newAV) {
+        second = newAV;
+    }
+}   

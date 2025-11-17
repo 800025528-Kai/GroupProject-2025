@@ -9,4 +9,8 @@ public class Main {
         System.out.println(p.getChar().getName() + ": " + p.getAV());
     }
     }
+    ab.modifyActionValue(b, 1   );
+    for (Pair p : ab.getActionOrder()) {
+        System.out.println(p.getChar().getName() + ": " + p.getAV());
+    }
 }

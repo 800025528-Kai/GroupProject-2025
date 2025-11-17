@@ -28,10 +28,12 @@ public class ActionBar {
         return actionOrder;
     }
 
-    public void modifyActionValue(Character c) {
+    public void modifyActionValue(Character c, double a) {
         for (int i = 0; i < actionOrder.size(); i++) {
-            if (actionOrder.get(i).getChar() == c) {
-                
+            if (actionOrder.get(i).getChar().getName().equals(c.getName())) {
+                actionOrder.get(i).setAV(a);
+                Pair temp = actionOrder.remove(i);
+                actionOrder.add(searchInsertIndex(temp.getAV()), temp);
             }
         }
     }

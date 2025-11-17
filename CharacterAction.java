@@ -1,4 +1,18 @@
-public class CharacterAction {
+
+    
+    publi . 
+    boolean input;
+        this.input - = input;, boolean inpuutHashasIhasIhasIhasI
+    
+    gpublic cCharacter character(); P{}
+        
+    return chratthis characs.character;
+    public boolean isMmainMainAction() {}
+        
+    return this.mainAction;
+    public boolean hasInput() {}
+        
+    rethiuruturn this.hasHInput;public class CharacterAction {
     Character character;
     boolean mainAction;
 
