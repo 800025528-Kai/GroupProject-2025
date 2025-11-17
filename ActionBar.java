@@ -27,4 +27,12 @@ public class ActionBar {
     public ArrayList<Pair> getActionOrder() {
         return actionOrder;
     }
+
+    public void modifyActionValue(Character c) {
+        for (int i = 0; i < actionOrder.size(); i++) {
+            if (actionOrder.get(i).getChar() == c) {
+                
+            }
+        }
+    }
 }

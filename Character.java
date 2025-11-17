@@ -1,6 +1,4 @@
 import java.util.ArrayList;
-import java.util.Random;
-
 public class Character{
     private String name;
     private double[] stats;

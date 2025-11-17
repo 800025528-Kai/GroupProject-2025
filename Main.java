@@ -1,4 +1,3 @@
-
 public class Main {
     public static void main(String[] args) {
     Character a = new Character("a", new double[]{10, 20, 30, 40, 50, 1, 1, 1, 1, 1, 1, 1});
