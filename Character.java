@@ -33,6 +33,4 @@ public class Character{
     public String toString(){
         return name;
     }
-
-    public 
 }
