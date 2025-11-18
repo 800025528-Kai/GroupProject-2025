@@ -19,12 +19,12 @@ public class ActionBar {
 
     public void addCharacter(Character c) { //add character to action order
         //dw abt it for now ill do smth weird with lists
-        double AV = 10000 / c.getStat()[3];
+        double AV = 10000 / c.spd();
         Pair newPair = new Pair(c, AV);
         actionOrder.add(searchInsertIndex(AV), newPair);
     }
 
-    public void modifyActionValue(Character c, double a){ //
+    public void modifyActionValue(Character c, double a){ //modify action value of character and reorder
         for (int i = 0; i < actionOrder.size(); i++) {
             if (actionOrder.get(i).getChar().getName().equals(c.getName())) {
                 actionOrder.get(i).setAV(a);
@@ -34,7 +34,7 @@ public class ActionBar {
         }
     }
     
-    public double findCharacterAV(Character c){
+    public double findCharacterAV(Character c){ //find current action value of character
         for (int i = 0; i < actionOrder.size(); i++) {
             if (actionOrder.get(i).getChar().getName().equals(c.getName())) {
                 return actionOrder.get(i).getAV();
@@ -43,12 +43,12 @@ public class ActionBar {
         return -1;
     }
     
-    public void speedChangeAV(Character c, double oldSpd, double newSpd){
+    public void speedChangeAV(Character c, double oldSpd, double newSpd){ //modify action value based on speed change
         modifyActionValue(c , findCharacterAV(c)*oldSpd/newSpd);
     }
 
-    public void actionAdvance(Character c, double advance){
-        double baseAV = 10000 / c.getStat()[3];
+    public void actionAdvance(Character c, double advance){ //advance action value based on percentage
+        double baseAV = 10000 / c.spd();
         double newAV = findCharacterAV(c)-baseAV*(advance/100);
         if (newAV > 0)
             modifyActionValue(c, newAV);

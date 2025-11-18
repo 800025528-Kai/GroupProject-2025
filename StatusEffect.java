@@ -1,22 +1,13 @@
 public class StatusEffect{
-    private int type;
-    private double multiplier;
-    private double flat;
-    private boolean isBuff;
-    private boolean isDebuff;
+    private String name;
+    private int duration;
+    private double[] statModifiers;
+    private boolean multiplier;
 
-    public StatusEffect(int type, double multiplier, double flat){
-        this.type = type;
+    public StatusEffect(String name, int duration, double[] statModifiers, boolean multiplier){
+        this.name = name;
+        this.duration = duration;
+        this.statModifiers = statModifiers;
         this.multiplier = multiplier;
-        this.flat = flat;
-    }
-    public int getType(){ //index of Character Stats
-        return type;
-    }
-    public double getMultiplier(){
-        return multiplier;
-    }
-    public double getFlat(){
-        return flat;
     }
 }

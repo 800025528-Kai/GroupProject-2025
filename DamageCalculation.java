@@ -8,12 +8,21 @@ public class DamageCalculation{
         d = defender;
     }
     private double getBaseDmg(){
-        return atk();
+        return 0;
     }
 
     private double critMultiplier(){
         if (Math.random()<a.critRate()){
-            
+            return 1.0 + a.critDmg();
         }
+        return 1.0;
+    }
+
+    private double damageBoost(){
+        return 0;
+    }
+
+    private double defMultiplier() {
+        return 0;
     }
 }
