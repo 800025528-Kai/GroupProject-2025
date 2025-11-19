@@ -19,7 +19,11 @@ public class DamageCalculation{
     }
 
     private double damageBoost(){
-        return 0;
+        return 1.0 + a.dmgBoost();
+    }
+
+    private double weakenMultiplier() {
+        return 1-a.weakenMulti();
     }
 
     private double defMultiplier() {

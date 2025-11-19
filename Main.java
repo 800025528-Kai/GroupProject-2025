@@ -13,4 +13,5 @@ public class Main {
         System.out.println(p.getChar().getName() + ": " + p.getAV());
     }
     }
+    
 }
