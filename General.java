@@ -1,4 +1,33 @@
 public class General {
+    static double max(double a, double b){
+        if (a > b){
+            return a;
+        } else {
+            return b;
+        }
+    }
+    static int max(int a, int b){
+        if (a > b){
+            return a;
+        } else {
+            return b;
+        }
+    }
+    static double min(double a, double b){
+        if (a < b){
+            return a;
+        } else {
+            return b;
+        }
+    }
+    static int min(int a, int b){
+        if (a < b){
+            return a;
+        } else {
+            return b;
+        }
+    }
+
     // element-wise element wise product of two arrays
     static double[] eleWiseProd(double[] a, double[] b){
         double[] result = new double[a.length];

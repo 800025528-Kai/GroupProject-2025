@@ -3,13 +3,16 @@ import java.lang.Math;
 public class DamageCalculation{
     private Character a;
     private Character d;
-    public DamageCalculation(Character attacker, Character defender){
+    private double abilityMultiplier;
+    public DamageCalculation(Character attacker, Character defender, double abilityMultiplier){
         a = attacker;
         d = defender;
+        this.abilityMultiplier = abilityMultiplier;
     }
     private double getBaseDmg(){
-        return 0;
+        return a.atk() * abilityMultiplier;
     }
+    // do the other stats thingymagigicicthanmusleirples
 
     private double critMultiplier(){
         if (Math.random()<a.critRate()){
@@ -27,6 +30,22 @@ public class DamageCalculation{
     }
 
     private double defMultiplier() {
-        return 0;
+        return General.max(1.0 - d.def()/(d.def() + 200 + 10*a.level()), 0.0);
+    }
+
+    private double resistanceMultiplier() {
+        return 1.0 - d.res() + a.resPen();
+    }
+    private double vulerabilityMultiplier() {
+        return 1 + d.vulMulti();
+    }
+    private double dmgMitigationMultiplier() {
+        return d.dmgMitigation();
+    }
+    private double brokenMultiplier() {
+        if (d.isBroken()) {
+            return 1.0;
+        }
+        return 0.9;
     }
 }
