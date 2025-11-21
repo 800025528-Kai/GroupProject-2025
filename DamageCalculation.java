@@ -44,6 +44,7 @@ public class DamageCalculation{
     }
 
     private double defMultiplier() {
+        System.out.println(d.def() + " " + a.level());
         return General.max(1.0 - d.def()/(d.def() + 200 + 10*a.level()), 0.0);
     }
 

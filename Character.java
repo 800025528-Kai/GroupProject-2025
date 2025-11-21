@@ -3,6 +3,7 @@ public class Character{
     private String name;
     private double[] stats;
     private double[] baseStats;
+    private int[] hitSplits;
     // stats in this order: hp, atk, def, spd, crit rate, crit dmg, break effect, heal multiplier, max energy, energy regen, effect hit rate, eff res, damage boost, dot boost, weaken, level, res, res pen, vul multiplier, dmg mitigation, toughness, 
     private ArrayList<StatusEffect> buffs;
 
@@ -11,6 +12,7 @@ public class Character{
         stats = charStats.clone();
         baseStats = charStats.clone();
         buffs = new ArrayList<StatusEffect>();
+        
     }
 
     public Character(){
@@ -30,21 +32,31 @@ public class Character{
     }
 
     public void applyBuffs(){
-        double [] multiplier = new double[stats.length];
+        stats = baseStats.clone();
+        double [] multi = new double[stats.length];
+        for (int i = 0; i < stats.length; i++) {
+            multi[i] = 1.0;
+        }
         double [] flat = new double[stats.length];
-        flat[19] = 1.0;
         for (StatusEffect a : buffs) {
             for (int i = 0; i < stats.length; i++) {
+                if (stats[2] == 200) {
+                    System.out.println("hi");
+                }
                 if (i != 19) {
-                    multiplier[i] += 1.0 + a.multiplier()[i];
+                    multi[i] += a.multiplier()[i];
                     flat[i] += a.flat()[i];
                 }
                 else {
-                    flat[i] *= 1 - a.flat()[i];
+                    multi[i] *= a.multiplier()[i]; // dmg mitigation is multiplicative
+                    System.out.println(stats[i]);
                 }
             }
+            General.arrayToString(a.multiplier(), true);
         }
-        stats = General.eleWiseProd(baseStats, multiplier);
+        General.arrayToString(multi, true);
+        General.arrayToString(baseStats, true);
+        stats = General.eleWiseProd(baseStats, multi);
         for (int i = 0; i < stats.length; i++) {
             stats[i] += flat[i];
         }
