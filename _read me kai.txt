@@ -1,0 +1,9 @@
+So for the classes it would be like this (indentation means top class calls/contains indented ones):
+Battle - topmost layer
+    Character
+        Abilities
+            Atk
+            buff
+            etc
+
+Therefore damagecalculation should be called in battle, so we need some way to just pass the variables along.
