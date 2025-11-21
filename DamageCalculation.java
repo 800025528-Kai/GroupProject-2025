@@ -9,7 +9,21 @@ public class DamageCalculation{
         d = defender;
         this.abilityMultiplier = abilityMultiplier;
     }
-    private double getBaseDmg(){
+    public double[] calculateDamage() {
+        double damage = baseDmg();
+        double cc = critMultiplier();
+        damage *= cc;
+        damage *= damageBoost();
+        damage *= weakenMultiplier();
+        damage *= defMultiplier();
+        damage *= resistanceMultiplier();
+        damage *= vulerabilityMultiplier();
+        damage *= dmgMitigationMultiplier();
+        damage *= brokenMultiplier();
+        double[] a = {baseDmg(), cc, damageBoost(), weakenMultiplier(), defMultiplier(), resistanceMultiplier(), vulerabilityMultiplier(), dmgMitigationMultiplier(), brokenMultiplier(), damage};
+        return a;
+    }
+    private double baseDmg(){
         return a.atk() * abilityMultiplier;
     }
     // do the other stats thingymagigicicthanmusleirples

@@ -10,6 +10,7 @@ public class Character{
         name = newName;
         stats = charStats.clone();
         baseStats = charStats.clone();
+        buffs = new ArrayList<StatusEffect>();
     }
 
     public Character(){
@@ -28,6 +29,26 @@ public class Character{
         buffs.add(newBuff);
     }
 
+    public void applyBuffs(){
+        double [] multiplier = new double[stats.length];
+        double [] flat = new double[stats.length];
+        flat[19] = 1.0;
+        for (StatusEffect a : buffs) {
+            for (int i = 0; i < stats.length; i++) {
+                if (i != 19) {
+                    multiplier[i] += 1.0 + a.multiplier()[i];
+                    flat[i] += a.flat()[i];
+                }
+                else {
+                    flat[i] *= 1 - a.flat()[i];
+                }
+            }
+        }
+        stats = General.eleWiseProd(baseStats, multiplier);
+        for (int i = 0; i < stats.length; i++) {
+            stats[i] += flat[i];
+        }
+    }
     //getters
     public double hp(){
         return stats[0];

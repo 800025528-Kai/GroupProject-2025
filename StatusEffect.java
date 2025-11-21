@@ -1,13 +1,25 @@
 public class StatusEffect{
     private String name;
     private int duration;
-    private double[] statModifiers;
-    private boolean multiplier;
+    private double[] multiplier;
+    private double[] flat;
 
-    public StatusEffect(String name, int duration, double[] statModifiers, boolean multiplier){
+    public StatusEffect(String name, int duration, double[] multiplier, double[] flat){
         this.name = name;
         this.duration = duration;
-        this.statModifiers = statModifiers;
+        // %buffs for multiplier stats are considered flat
+        this.flat = flat;
         this.multiplier = multiplier;
+    }
+
+    //getters
+    public String name(){
+        return name;
+    }
+    public double[] multiplier(){
+        return multiplier;
+    }
+    public double[] flat(){
+        return flat;
     }
 }
