@@ -1,9 +1,9 @@
-public class team {
-    Character[] members;
-    boolean isFriendly;
+import java.util.ArrayList;
 
-    public team(Character[] members, boolean isFriendly) {
+public class team {
+    ArrayList<Character> members;
+
+    public team(ArrayList<Character> members) {
         this.members = members;
-        this.isFriendly = isFriendly;
     }
 }
