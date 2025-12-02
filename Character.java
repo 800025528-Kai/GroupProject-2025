@@ -61,6 +61,13 @@ public class Character{
             stats[i] += flat[i];
         }
     }
+
+    public void modifyHP(double change){
+        stats[0] += change;
+        stats[0] = General.min(stats[0], stats[21]);
+        stats[0] = General.max(stats[0], 0);
+    }
+
     //getters
     public double hp(){
         return stats[0];

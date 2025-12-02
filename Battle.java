@@ -15,4 +15,8 @@ public class Battle {
     public ArrayList<Character> getEnemies() {
         return enemies;
     }
+    
+    public Character getEnemy(int index){
+        return enemies.get(index);
+    }
 }

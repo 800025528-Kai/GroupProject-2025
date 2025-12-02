@@ -46,3 +46,11 @@ Use the returned per-target damage for HP deductions, logging, etc.
 This approach lets you add features—like damage previews, simulations, or alternate scaling—without ever editing Atk. It also makes unit tests simpler: you can test DamageCalculation in isolation, then test DamageResolver with mocked attackers/targets, and keep ability definitions as static fixtures.
 
 Let me know if you’d like help drafting the new resolver or reorganizing the packages; happy to mock up the new classes.
+
+
+
+battle
+- combat engine
+    - handles interaction
+        -> apply dmg
+            - by DamageCalculation

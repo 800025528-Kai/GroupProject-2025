@@ -18,19 +18,6 @@ public class Atk{
         this.isAoe = isAoe;
     }
     
-    public ArrayList<Double> hitSplitDmg(DamageCalculation a){
-        for (int i = 0; i < hitSplit.size();i++){
-            hitSplit.set(i, hitSplit.get(i)*a.calculateDamage());
-        }
-        return hitSplit;
-    }
-    public ArrayList<Double> altHitSplitDmg(DamageCalculation a){
-        for (int i = 0; i < hitSplit.size();i++){
-            altHitSplit.set(i, altHitSplit.get(i)*a.calculateDamage());
-        }
-        return hitSplit;
-    }
-    
     public ArrayList<Double> getHitSplit() {
         return hitSplit;
     }
