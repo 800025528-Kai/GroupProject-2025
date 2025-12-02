@@ -1,5 +1,5 @@
 public class Display {
-    static boolean[][] screen = new boolean[48][80];
+    static boolean[][] screen = new boolean[50][50];
 
     static void randomizeScreen() {
         for (int x = 0; x < screen.length; x++) {
@@ -42,5 +42,17 @@ public class Display {
         
         System.out.print(sb);
     }
+
+    static void addSprite(int X, int Y, boolean[][] sprite) {
+        for (int i = 0; i < sprite.length; i++) {
+            for (int j = 0; j < sprite[i].length; j++) {
+                if (sprite[i][j]) {
+                    screen[X + i][Y + j] = true;
+                }
+            }
+        }
+    }
+
+
 
 }

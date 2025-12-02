@@ -4,7 +4,7 @@ public class Character{
     private double[] stats;
     private double[] baseStats;
     private int[] hitSplits;
-    // stats in this order: hp, atk, def, spd, crit rate, crit dmg, break effect, heal multiplier, max energy, energy regen, effect hit rate, eff res, damage boost, dot boost, weaken, level, res, res pen, vul multiplier, dmg mitigation, toughness, maxHP
+    // stats in this order: hp, atk, def, spd, crit rate, crit dmg, break effect, heal multiplier, max energy, energy regen, effect hit rate, eff res, damage boost, dot boost, weaken, level, res, res pen, vul multiplier, dmg mitigation, toughness, maxHP, energy
     private ArrayList<StatusEffect> buffs;
 
     public Character(String newName, double[] charStats){
@@ -130,6 +130,9 @@ public class Character{
     }
     public double maxHP(){
         return stats[21];
+    }
+    public double energy(){
+        return stats[22];
     }
 
     @Override

@@ -16,16 +16,5 @@ public class Abilities{
         this.buffSkill = buffSkill;
     }
 
-    public ArrayList<Double> basicHitSplit(int times){
-        ArrayList<Double> basicHits = new ArrayList<Double>();
-        if (basic.isAoe() == true)
-        {
-            for (int i = 0; i < times; i++){
-            basicHits.add()
-            }
-        }
-        
-
-    }
-
+    
 }

@@ -1,3 +1,6 @@
+import org.jline.terminal.Terminal;
+import org.jline.terminal.TerminalBuilder;
+
 public class General {
     static double max(double a, double b){
         if (a > b){
