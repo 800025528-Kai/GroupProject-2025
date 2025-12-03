@@ -48,9 +48,9 @@ This approach lets you add features—like damage previews, simulations, or alte
 Let me know if you’d like help drafting the new resolver or reorganizing the packages; happy to mock up the new classes.
 
 
-
 battle
-- combat engine
-    - handles interaction
-        -> apply dmg
-            - by DamageCalculation
+    - Ability
+        - combat engine
+            - handles interaction
+                - apply dmg
+                    - by DamageCalculation

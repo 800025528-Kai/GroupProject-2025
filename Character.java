@@ -6,12 +6,15 @@ public class Character{
     private int[] hitSplits;
     // stats in this order: hp, atk, def, spd, crit rate, crit dmg, break effect, heal multiplier, max energy, energy regen, effect hit rate, eff res, damage boost, dot boost, weaken, level, res, res pen, vul multiplier, dmg mitigation, toughness, maxHP, energy
     private ArrayList<StatusEffect> buffs;
+    private Abilities abilities;
 
-    public Character(String newName, double[] charStats){
+
+    public Character(String newName, double[] charStats, Abilities charAbilities){
         name = newName;
         stats = charStats.clone();
         baseStats = charStats.clone();
         buffs = new ArrayList<StatusEffect>();
+        abilities = charAbilities;
         
     }
 
@@ -30,6 +33,7 @@ public class Character{
     public void addBuff(StatusEffect newBuff){
         buffs.add(newBuff);
     }
+    
 
     public void applyBuffs(){
         stats = baseStats.clone();

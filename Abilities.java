@@ -16,5 +16,6 @@ public class Abilities{
         this.buffSkill = buffSkill;
     }
 
-    
+    //getters
+
 }

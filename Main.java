@@ -4,7 +4,7 @@ import java.util.concurrent.ConcurrentLinkedQueue;
 
 public class Main {
     static ConcurrentLinkedQueue<Integer> keyEvents = new ConcurrentLinkedQueue<>();
-    static volatile boolean running = true;
+    static volatile String gameState = "startMenu";
     public static void main(String[] args) throws Exception {
 
     Terminal terminal = TerminalBuilder.builder().system(true).build();
@@ -46,17 +46,31 @@ public class Main {
     
     inputThread.setDaemon(true);
     inputThread.start();
-    while (running) {
+    while (!gameState.equals("end")) {
         Integer key;
+        boolean[][] sprite = {{true, true, true}, {false, true, false}, {true, true, true}};
+
             while ((key = keyEvents.poll()) != null) {
                 System.out.println("Pressed: " + (char)(int)key);
                 if (key == 'q') {
-                    running = false;
+                    gameState = "end";
                 }
-                if (key == 'r') {
-                    Display.randomizeScreen();
+                if (key == 'd') {
                     Display.drawScreen();
                 }
+                if (key == 's') {
+                    Display.addSprite(0, 0, sprite);
+                    Display.drawScreen();
+                }
+                if (key == 'm') {
+                    Display.addSprite(49, 49, sprite);
+                    Display.drawScreen();
+                }
+                if (key == 'c') {
+                    Display.clearScreen();
+                    Display.drawScreen();
+                }
+
             }
 
         }

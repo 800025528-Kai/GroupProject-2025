@@ -56,6 +56,10 @@ public class ActionBar {
             modifyActionValue(c, 0);
     }
 
+    public Character getNext() { //get character with next turn
+        return actionOrder.get(0).getChar();
+    }
+
     //getters
     public ArrayList<Pair> getActionOrder() {
         return actionOrder;
