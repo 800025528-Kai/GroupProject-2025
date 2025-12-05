@@ -26,13 +26,8 @@ public class Battle {
         return teammates.get(index);
     }
 
-    public void hitTarget(Character target, class ability){
-        if (enemies.indexOf(target) < 0){
-
-        }
-        else{
-            Atk attack = new Atk()
-            CombatEngine a = new CombatEngine(actionOrder.getNext(),)
-        }
+    public void doAction(int index, Character self, Character target) {
+        
+    }
     }
 }

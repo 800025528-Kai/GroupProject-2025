@@ -6,4 +6,8 @@ public class Ability {
         this.name = name;
         this.targetEnemy = targetEnemy;
     }
+
+    public void execute(Character a, Character b) {
+
+    }
 }

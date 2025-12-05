@@ -6,22 +6,15 @@ public class Character{
     private int[] hitSplits;
     // stats in this order: hp, atk, def, spd, crit rate, crit dmg, break effect, heal multiplier, max energy, energy regen, effect hit rate, eff res, damage boost, dot boost, weaken, level, res, res pen, vul multiplier, dmg mitigation, toughness, maxHP, energy
     private ArrayList<StatusEffect> buffs;
-    private Abilities abilities;
+    private boolean isPlayable;
 
 
-    public Character(String newName, double[] charStats, Abilities charAbilities){
+    public Character(String newName, double[] charStats, boolean isPlayable){
         name = newName;
         stats = charStats.clone();
         baseStats = charStats.clone();
-        buffs = new ArrayList<StatusEffect>();
-        abilities = charAbilities;
-        
-    }
-
-    public Character(){
-        name = "default";
-        stats = new double[]{100, 10, 10, 100, 5, 50, 0, 1, 100, 10, 0, 0};
-        buffs = new ArrayList<StatusEffect>();
+        buffs = new ArrayList<StatusEffect>();        
+        this.isPlayable = isPlayable;
     }
 
     public String getName(){

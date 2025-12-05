@@ -70,6 +70,20 @@ public class Main {
                     Display.clearScreen();
                     Display.drawScreen();
                 }
+                if (key == 'r') {
+                    Display.randomizeScreen();
+                    Display.drawScreen();
+                }
+                if (key == 'x') {
+                    Character a = new Character("a", new double[]{1203, 620, 460, 100, 0.05, 0.5, 0, 0, 100, 1, 0, 0, 0, 0, 0, 80, 0, 0, 0, 0, 0, 1203, 5}, false);
+                    TC tc = new TC();
+
+                    tc.useAbility(0, a);
+
+                    System.out.println(a.hp());
+
+                }
+                keyEvents.add((int)'r');
 
             }
 

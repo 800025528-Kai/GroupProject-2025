@@ -8,7 +8,7 @@ public class CombatEngine {
     private ArrayList<Character> enemyTeam;
     private Atk ability;
     
-
+    //single
     public CombatEngine(Character attacker, Character defender, Atk ability) {
         this.attacker = attacker;
         mainDefender = defender;

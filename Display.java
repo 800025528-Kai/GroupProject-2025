@@ -1,5 +1,5 @@
 public class Display {
-    static boolean[][] screen = new boolean[100][160];
+    static boolean[][] screen = new boolean[100][120];
 
     static void randomizeScreen() {
         for (int x = 0; x < screen.length; x++) {
