@@ -51,28 +51,34 @@ public class Main {
         boolean[][] sprite = {{true, true, true}, {false, true, false}, {true, true, true}};
 
             while ((key = keyEvents.poll()) != null) {
-                System.out.println("Pressed: " + (char)(int)key);
+                terminal.writer().println("Pressed: " + (char)(int)key);
                 if (key == 'q') {
                     gameState = "end";
+                    terminal.writer().flush(); 
                 }
                 if (key == 'd') {
                     Display.drawScreen();
+                    terminal.writer().flush(); 
                 }
                 if (key == 's') {
                     Display.addSprite(0, 0, sprite);
                     Display.drawScreen();
+                    terminal.writer().flush(); 
                 }
                 if (key == 'm') {
                     Display.addSprite(49, 49, sprite);
                     Display.drawScreen();
+                    terminal.writer().flush(); 
                 }
                 if (key == 'c') {
                     Display.clearScreen();
                     Display.drawScreen();
+                    terminal.writer().flush(); 
                 }
                 if (key == 'r') {
                     Display.randomizeScreen();
                     Display.drawScreen();
+                    terminal.writer().flush(); 
                 }
                 if (key == 'x') {
                     Character a = new Character("a", new double[]{1203, 620, 460, 100, 0.05, 0.5, 0, 0, 100, 1, 0, 0, 0, 0, 0, 80, 0, 0, 0, 0, 0, 1203, 5}, false);
@@ -80,10 +86,11 @@ public class Main {
 
                     tc.useAbility(0, a);
 
-                    System.out.println(a.hp());
-
+                    terminal.writer().println(a.hp());
+                    terminal.writer().flush();
                 }
                 keyEvents.add((int)'r');
+                Thread.sleep(50);
 
             }
 

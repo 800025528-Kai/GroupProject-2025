@@ -38,7 +38,7 @@ public class Character{
         for (StatusEffect a : buffs) {
             for (int i = 0; i < stats.length; i++) {
                 if (stats[2] == 200) {
-                    System.out.println("hi");
+                    //System.out.println("hi");
                 }
                 if (i != 19) {
                     multi[i] += a.multiplier()[i];
@@ -46,7 +46,7 @@ public class Character{
                 }
                 else {
                     multi[i] *= a.multiplier()[i]; // dmg mitigation is multiplicative
-                    System.out.println(stats[i]);
+                    //System.out.println(stats[i]);
                 }
             }
             General.arrayToString(a.multiplier(), true);

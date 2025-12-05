@@ -29,5 +29,5 @@ public class Battle {
     public void doAction(int index, Character self, Character target) {
         
     }
-    }
+    
 }
