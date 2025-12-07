@@ -3,6 +3,6 @@
         "."
     ],
     "java.project.referencedLibraries": [
-        "jline-3.30.6.jar"
+        "lib/jline-3.30.6.jar"
     ]
 }
