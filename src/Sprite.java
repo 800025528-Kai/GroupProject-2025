@@ -33,7 +33,7 @@ public class Sprite {
     }
 
     public void goTo(double ticks, int x, int y) throws InterruptedException {
-        
+
 
         // ticks are 20 ms slices
         int startX = positionX;
@@ -80,5 +80,12 @@ public class Sprite {
         }
 
         this.sprite = mirrored;
+    }
+
+    public int getWidth() {
+        return sprite[0].length;
+    }
+    public int getHeight() {
+        return sprite.length;
     }
 }

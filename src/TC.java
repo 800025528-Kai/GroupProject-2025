@@ -2,7 +2,6 @@ package src;
 import java.util.ArrayList;
 public class TC extends Character{ //Template Character
 
-    private double[] stats;
     private ArrayList<Ability> abilities = new ArrayList<Ability>();
 
     public TC(){
@@ -36,5 +35,4 @@ public class TC extends Character{ //Template Character
     public void useAbility(int index, Character target){
         abilities.get(index).execute(this, target);
     }
-
 }

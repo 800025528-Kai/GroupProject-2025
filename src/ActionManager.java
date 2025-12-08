@@ -16,5 +16,6 @@ public class ActionManager {
     public void removeAction(int index) { // remove an action
         actions.remove(index);
     }
+    
     //make removeaction by character action later
 }

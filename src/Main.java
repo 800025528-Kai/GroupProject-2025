@@ -49,32 +49,10 @@ public class Main {
     inputThread.setDaemon(true);
     inputThread.start();
     Display.initTerminal.main(new String[]{});
-    Sprite sprite = new Sprite(General.convTo2dBool(new int[][]{
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0},
-        {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
-        {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
-        {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
-        {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
-        {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
-        {0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0},
-        {0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0},
-        {0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0},
-        {0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0},
-        {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
-        {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
-        {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
-        }), 0, 0);
     
     ArrayList<Character> teammates = new ArrayList<Character>();
     ArrayList<Character> enemies = new ArrayList<Character>();
+    ArrayList<Sprite> ui = new ArrayList<Sprite>();
     teammates.add(new TC());
     teammates.get(0).getSprite().setPos(10, 10);
     teammates.add(new TC());
@@ -91,6 +69,10 @@ public class Main {
     enemies.get(2).getSprite().setPos(70, 100);
     enemies.add(new TC());
     enemies.get(3).getSprite().setPos(100, 100);
+    
+    int pointIndex = 0;
+    
+    Pointer.pointTo(teammates.get(pointIndex).getSprite());
 
     final long FRAME_DURATION_NS = 20_000_000L;
     long nextFrameTime = FramePacer.initNextFrameTimestamp(FRAME_DURATION_NS);
@@ -105,6 +87,10 @@ public class Main {
                 for (Character c : enemies) {
                     Display.addSprite(c.getSprite());
                 }
+                for (Sprite s : ui) {
+                    Display.addSprite(s);
+                }
+                Display.addSprite(Pointer.pointer);
             }
             if (key == 'q') {
                 gameState = "end";
@@ -112,24 +98,23 @@ public class Main {
             if (key == 'c') {
                 Display.clearScreen();
             }
-            if (key == 'r') {
-                sprite.goTo(100, 100, 100);
+            if (key == 'w') {
+                if (pointIndex > 0) {
+                    pointIndex = (pointIndex - 1);
+                }
+                Pointer.pointTo(teammates.get(pointIndex).getSprite());
             }
-            if (key == 'x') {
-                Character a = new Character("a", new double[]{1203, 620, 460, 100, 0.05, 0.5, 0, 0, 100, 1, 0, 0, 0, 0, 0, 80, 0, 0, 0, 1, 0, 1203, 5}, false, new Sprite(new boolean[][] {{true, true, true}, {false, true, false}, {true, true, true}}, 0, 0));
-                TC tc = new TC();
-
-                 tc.useAbility(0, a);
-
-                terminal.writer().println(a.hp());
-            }
-            if (key == 'm') {
-                sprite.mirrorHorizontally();
+            if (key == 's') {
+                if (pointIndex < teammates.size() - 1) {
+                    pointIndex = (pointIndex + 1);
+                }
+                Pointer.pointTo(teammates.get(pointIndex).getSprite());
             }
             Display.updateScreen();
             Display.drawScreen();
+            terminal.writer().println("TeamHP: " + teammates.get(0).hp() + " " + teammates.get(1).hp() + " " + teammates.get(2).hp() + " " + teammates.get(3).hp() + "\n"
+            + "EnemyHP: " + enemies.get(0).hp() + " " + enemies.get(1).hp() + " " + enemies.get(2).hp() + " " + enemies.get(3).hp());
         }
-
         terminal.writer().flush();
         nextFrameTime = FramePacer.waitForNextFrame(nextFrameTime, FRAME_DURATION_NS);
     }
