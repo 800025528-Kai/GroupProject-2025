@@ -11,13 +11,13 @@ public class Character{
     private Sprite sprite;
 
 
-    public Character(String newName, double[] charStats, boolean isPlayable){
+    public Character(String newName, double[] charStats, boolean isPlayable, Sprite sprite){
         name = newName;
         stats = charStats.clone();
         baseStats = charStats.clone();
         buffs = new ArrayList<StatusEffect>();        
         this.isPlayable = isPlayable;
-        //this.sprite = sprite;
+        this.sprite = sprite;
     }
 
     public String getName(){

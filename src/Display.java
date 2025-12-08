@@ -5,8 +5,8 @@ import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
 
 public class Display {
-    static final int WIDTH = 100;
-    static final int HEIGHT = 100;
+    static final int WIDTH = 224;
+    static final int HEIGHT = 126;
     static boolean[][] screen = new boolean[HEIGHT][WIDTH];
     static ArrayList<Sprite> sprites = new ArrayList<Sprite>();
 
@@ -93,7 +93,7 @@ public class Display {
             .system(true)
             .build();
 
-        String resizeSequence = "\u001b[8;" + HEIGHT/2 + ";" + WIDTH + "t";
+        String resizeSequence = "\u001b[8;" + (HEIGHT/2 + 1) + ";" + (WIDTH + 1) + "t";
 
         terminal.writer().write(resizeSequence);
         terminal.writer().flush();

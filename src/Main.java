@@ -2,10 +2,11 @@ package src;
 import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
 import java.util.concurrent.ConcurrentLinkedQueue;
+import java.util.ArrayList;
 
 public class Main {
     static ConcurrentLinkedQueue<Integer> keyEvents = new ConcurrentLinkedQueue<>();
-    static volatile String gameState = "startMenu";
+    static volatile String gameState = "input";
     public static void main(String[] args) throws Exception {
 
     Terminal terminal = TerminalBuilder.builder().system(true).build();
@@ -15,7 +16,7 @@ public class Main {
     Thread inputThread = new Thread(() -> {
             try {
                 int ch;
-                while ((ch = terminal.reader().read()) != -1) {
+                while ((ch = terminal.reader().read()) != -1 && gameState.equals("input")) {
                     keyEvents.add(ch);
                 }
             } catch (Exception e) {}
@@ -48,64 +49,90 @@ public class Main {
     inputThread.setDaemon(true);
     inputThread.start();
     Display.initTerminal.main(new String[]{});
+    Sprite sprite = new Sprite(General.convTo2dBool(new int[][]{
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0},
+        {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
+        {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
+        {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
+        {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
+        {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
+        {0, 0, 0, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0},
+        {0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0},
+        {0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0},
+        {0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 0, 0, 0},
+        {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
+        {0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0},
+        {0, 0, 0, 0, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
+        }), 0, 0);
+    
+    ArrayList<Character> teammates = new ArrayList<Character>();
+    ArrayList<Character> enemies = new ArrayList<Character>();
+    teammates.add(new TC());
+    teammates.get(0).getSprite().setPos(10, 10);
+    teammates.add(new TC());
+    teammates.get(1).getSprite().setPos(40, 10);
+    teammates.add(new TC());
+    teammates.get(2).getSprite().setPos(70, 10);
+    teammates.add(new TC());
+    teammates.get(3).getSprite().setPos(100, 10);
+    enemies.add(new TC());
+    enemies.get(0).getSprite().setPos(10, 100);
+    enemies.add(new TC());
+    enemies.get(1).getSprite().setPos(40, 100);
+    enemies.add(new TC());
+    enemies.get(2).getSprite().setPos(70, 100);
+    enemies.add(new TC());
+    enemies.get(3).getSprite().setPos(100, 100);
+
+    final long FRAME_DURATION_NS = 20_000_000L;
+    long nextFrameTime = FramePacer.initNextFrameTimestamp(FRAME_DURATION_NS);
+
     while (!gameState.equals("end")) {
         Integer key;
-        Sprite sprite = new Sprite(new boolean[][]{{true, true, true}, {false, true, false}, {true, true, true}}, 0, 0);
-
-            while ((key = keyEvents.poll()) != null) {
-
-                terminal.writer().println("Pressed: " + (char)(int)key);
-                if (key == 'q') {
-                    gameState = "end";
-                    terminal.writer().flush(); 
+        while ((gameState.equals("input") && (key = keyEvents.poll()) != null)) {
+            if (key == 'k') {
+                for (Character c : teammates) {
+                    Display.addSprite(c.getSprite());
                 }
-                if (key == 'd') {
-                    Display.drawScreen();
-                    terminal.writer().flush(); 
-                }
-                if (key == 's') {
-                    Display.addSprite(sprite);
-                    Display.drawScreen();
-                    terminal.writer().flush(); 
-                }
-                if (key == 'm') {
-                    Display.addSprite(sprite);
-                    for (int i = 0; i < 10; i++) {
-                        sprite.move(1, 0);
-                        Display.drawScreen();
-                        terminal.writer().flush(); 
-                        try {
-                            Thread.sleep(100);
-                        } catch (InterruptedException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                }
-                if (key == 'c') {
-                    Display.clearScreen();
-                    Display.drawScreen();
-                    terminal.writer().flush(); 
-                }
-                if (key == 'r') {
-                    for (int i = 0; i < 100; i++) {
-                        Display.addSprite(sprite);
-                        sprite.goTo(0, (int)EasingFunctions.lerp(0, 100, EasingFunctions.easeInOutCubic(0, 1, i / 100.0)));
-                        Display.drawScreen();
-                        terminal.writer().flush();
-                        Thread.sleep(20);
-                    }                }
-                if (key == 'x') {
-                    Character a = new Character("a", new double[]{1203, 620, 460, 100, 0.05, 0.5, 0, 0, 100, 1, 0, 0, 0, 0, 0, 80, 0, 0, 0, 1, 0, 1203, 5}, false);
-                    TC tc = new TC();
-
-                    tc.useAbility(0, a);
-
-                    terminal.writer().println(a.hp());
-                    terminal.writer().flush();
+                for (Character c : enemies) {
+                    Display.addSprite(c.getSprite());
                 }
             }
+            if (key == 'q') {
+                gameState = "end";
+            }
+            if (key == 'c') {
+                Display.clearScreen();
+            }
+            if (key == 'r') {
+                sprite.goTo(100, 100, 100);
+            }
+            if (key == 'x') {
+                Character a = new Character("a", new double[]{1203, 620, 460, 100, 0.05, 0.5, 0, 0, 100, 1, 0, 0, 0, 0, 0, 80, 0, 0, 0, 1, 0, 1203, 5}, false, new Sprite(new boolean[][] {{true, true, true}, {false, true, false}, {true, true, true}}, 0, 0));
+                TC tc = new TC();
 
+                 tc.useAbility(0, a);
+
+                terminal.writer().println(a.hp());
+            }
+            if (key == 'm') {
+                sprite.mirrorHorizontally();
+            }
+            Display.updateScreen();
+            Display.drawScreen();
         }
+
+        terminal.writer().flush();
+        nextFrameTime = FramePacer.waitForNextFrame(nextFrameTime, FRAME_DURATION_NS);
+    }
     terminal.close();
     }
 }

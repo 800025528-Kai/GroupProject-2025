@@ -1,32 +1,44 @@
 {
-	"version": "2.0.0",
-	"tasks": [
+    "version": "2.0.0",
+    "tasks": [
 		{
-			"type": "java (build)",
-			"paths": [
-				"${workspace}"
-			],
-			"isFullBuild": true,
-			"group": "build",
+			"label": "Clean old JARs",
+			"type": "shell",
+			"command": "find \"${workspaceFolder}\" -maxdepth 1 -name '*.jar' -delete",
 			"problemMatcher": [],
-			"label": "java (build): Build Workspace",
-			"detail": "$(tools) Build all the Java projects in workspace."
+			"group": "build"
 		},
-		{
-			"type": "java (buildArtifact)",
-			"mainClass": "Main",
-			"targetPath": "${workspaceFolder}/${workspaceFolderBasename}.jar",
-			"elements": [
-				"${compileOutput}",
-				"${dependencies}"
-			],
-			"problemMatcher": [],
-			"label": "java (buildArtifact): GroupProject-2025",
-			"group": {
-				"kind": "build",
-				"isDefault": true
-			}
-		}
-		
-	]
+        {
+            "label": "Build Main.jar",
+            "type": "shell",
+            "command": "java -jar ${workspaceFolder}/.java-build/Main.jar",
+            "dependsOn": ["Clean old JARs"],
+            "problemMatcher": [],
+            "group": "build",
+            "detail": "Use Java Extension Pack Export Jar feature"
+        },
+        {
+            "label": "Run Main.jar",
+            "type": "shell",
+            "command": "java -jar ${workspaceFolder}/Main.jar",
+            "dependsOn": ["Build Main.jar"],
+            "presentation": {
+                "echo": true,
+                "reveal": "always",
+                "focus": false,
+                "panel": "new",
+                "showReuseMessage": false
+            },
+            "group": "test"
+        },
+        {
+            "label": "Build and Run Main.jar",
+            "dependsOrder": "sequence",
+            "dependsOn": ["Clean old JARs", "Build Main.jar", "Run Main.jar"],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
 }

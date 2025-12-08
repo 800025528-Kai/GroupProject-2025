@@ -136,5 +136,15 @@ public class General {
         return result;
     }
 
+    static boolean[][] convTo2dBool(int[][] arr) {
+        boolean[][] result = new boolean[arr.length][arr[0].length];
+        for (int i = 0; i < arr.length; i++) {
+            for (int j = 0; j < arr[0].length; j++) {
+                result[i][j] = (arr[i][j] != 0);
+            }
+        }
+        return result;
+    }
+
     
 }
