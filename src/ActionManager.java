@@ -1,7 +1,14 @@
 package src;
 import java.util.ArrayList;
+import java.util.Stack;
 
 public class ActionManager {
+
+    private Stack<CharacterAction> actionStack;
+
+    
+
+    /*
     ArrayList<CharacterAction> actions;
 
     public ActionManager(CharacterAction mainAction) { // initialize action object in actionOrder arraylist
@@ -16,6 +23,7 @@ public class ActionManager {
     public void removeAction(int index) { // remove an action
         actions.remove(index);
     }
+    */
     
     //make removeaction by character action later
 }

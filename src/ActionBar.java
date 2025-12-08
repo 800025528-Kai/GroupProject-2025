@@ -62,23 +62,6 @@ public class ActionBar {
         return actionOrder.get(0).getChar();
     }
 
-    public void next() {
-        if (actionOrder.get(0).getChar().hp() <= 0) {
-            actionOrder.remove(0);
-        }
-        else {
-            actionOrder.add(actionOrder.get(0));
-            actionOrder.remove(0);
-        }
-        double nextAV = actionOrder.get(0).getAV();
-        Pair nextPair = actionOrder.get(0);
-        for (int i = 0; i < actionOrder.size(); i++) {
-            actionOrder.get(i).setAV(actionOrder.get(i).getAV() - nextAV);
-        }
-        ActionManager am = new ActionManager(new CharacterAction(nextPair.getChar(), true, true));
-        
-    }
-
     //getters
     public ArrayList<Pair> getActionOrder() {
         return actionOrder;

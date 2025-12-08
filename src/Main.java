@@ -6,7 +6,8 @@ import java.util.ArrayList;
 
 public class Main {
     static ConcurrentLinkedQueue<Integer> keyEvents = new ConcurrentLinkedQueue<>();
-    static volatile String gameState = "input";
+    public static volatile String gameState = "input";
+    public static volatile boolean targetEnemy;
     public static void main(String[] args) throws Exception {
 
     Terminal terminal = TerminalBuilder.builder().system(true).build();

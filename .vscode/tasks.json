@@ -1,18 +1,20 @@
 {
     "version": "2.0.0",
     "tasks": [
-		{
-			"label": "Clean old JARs",
-			"type": "shell",
-			"command": "find \"${workspaceFolder}\" -maxdepth 1 -name '*.jar' -delete",
-			"problemMatcher": [],
-			"group": "build"
-		},
+        {
+            "label": "Clean old JARs",
+            "type": "shell",
+            "command": "find \"${workspaceFolder}\" -maxdepth 1 -name '*.jar' -delete",
+            "problemMatcher": [],
+            "group": "build"
+        },
         {
             "label": "Build Main.jar",
             "type": "shell",
             "command": "java -jar ${workspaceFolder}/.java-build/Main.jar",
-            "dependsOn": ["Clean old JARs"],
+            "dependsOn": [
+                "Clean old JARs"
+            ],
             "problemMatcher": [],
             "group": "build",
             "detail": "Use Java Extension Pack Export Jar feature"
@@ -21,7 +23,9 @@
             "label": "Run Main.jar",
             "type": "shell",
             "command": "java -jar ${workspaceFolder}/Main.jar",
-            "dependsOn": ["Build Main.jar"],
+            "dependsOn": [
+                "Build Main.jar"
+            ],
             "presentation": {
                 "echo": true,
                 "reveal": "always",
@@ -34,7 +38,23 @@
         {
             "label": "Build and Run Main.jar",
             "dependsOrder": "sequence",
-            "dependsOn": ["Clean old JARs", "Build Main.jar", "Run Main.jar"],
+            "dependsOn": [
+                "Clean old JARs",
+                "Build Main.jar",
+                "Run Main.jar"
+            ],
+            "group": "build",
+            "problemMatcher": []
+        },
+        {
+            "type": "java (buildArtifact)",
+            "targetPath": "${workspaceFolder}/${workspaceFolderBasename}.jar",
+            "elements": [
+                "${compileOutput}",
+                "${dependencies}"
+            ],
+            "problemMatcher": [],
+            "label": "java (buildArtifact): GroupProject-2025",
             "group": {
                 "kind": "build",
                 "isDefault": true
