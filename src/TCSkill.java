@@ -19,7 +19,18 @@ public class TCSkill extends Ability {
     }
 
     public void execute(Character user, Character target) {
-        CombatEngine engine = new CombatEngine(user, target, attack);
+        ArrayList<Character> enemies = Battle.getEnemies();
+        int targetIndex = enemies.indexOf(target);
+        CombatEngine engine;
+        if (targetIndex == 0) {
+            engine = new CombatEngine(user, target, enemies.get(1), null, attack);
+        }
+        else if (targetIndex == enemies.size() - 1) {
+            engine = new CombatEngine(user, target, enemies.get(targetIndex - 1), null, attack);
+        }
+        else {
+            engine = new CombatEngine(user, target, enemies.get(targetIndex - 1), enemies.get(targetIndex + 1), attack);
+        }
         engine.executeDamage();
     }
 }

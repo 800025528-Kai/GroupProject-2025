@@ -3,11 +3,15 @@ import java.util.ArrayList;
 
 public class ActionBar {
     private ArrayList<Pair> actionOrder;
+    private Pair currentTurn;
+    private ArrayList<CharacterAction> actionQueue;
+    private CharacterAction currentAction;
     // Character action value pairs
 
     public ActionBar() {
         this.actionOrder = new ArrayList<Pair>();
-        actionOrder.add(null);
+        this.currentTurn = null;
+        this.actionQueue = new ArrayList<CharacterAction>();
     }
 
     private int searchInsertIndex(double AV) { //find index to insert based on AV
@@ -62,8 +66,32 @@ public class ActionBar {
         return actionOrder.get(0).getChar();
     }
 
+    public void next(){
+        if (actionQueue.isEmpty()){
+            double nextAV = actionOrder.get(0).getAV();
+            currentTurn = actionOrder.remove(0);
+            for (Pair p : actionOrder){
+                p.setAV(p.getAV() - nextAV);
+            }
+            actionQueue.add(new CharacterAction(currentTurn.getChar(), true, true));
+            this.next();
+        }
+        else{
+            currentAction = actionQueue.remove(0);
+            if (currentAction.isUserInput()) {
+                Main.gameState = "input";
+            }
+        }
+    }
+
     //getters
     public ArrayList<Pair> getActionOrder() {
         return actionOrder;
+    }
+    public Pair getCurrentTurn() {
+        return currentTurn;
+    }
+    public CharacterAction getCurrentAction() {
+        return currentAction;
     }
 }

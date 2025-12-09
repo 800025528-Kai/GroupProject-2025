@@ -9,6 +9,7 @@ public class Character{
     private ArrayList<StatusEffect> buffs;
     private boolean isPlayable;
     private Sprite sprite;
+    private ArrayList<Ability> abilities;
 
 
     public Character(String newName, double[] charStats, boolean isPlayable, Sprite sprite){
@@ -18,6 +19,7 @@ public class Character{
         buffs = new ArrayList<StatusEffect>();        
         this.isPlayable = isPlayable;
         this.sprite = sprite;
+        abilities = new ArrayList<Ability>();
     }
 
     public String getName(){
@@ -145,8 +147,17 @@ public class Character{
         return stats[22];
     }
 
+    public ArrayList<Ability> getAbilities(){
+        return abilities;
+    }
+
     @Override
     public String toString(){
         return name;
+    }
+
+    //for polymorphisms
+    public void useAbility(int index, Character target){
+        return;
     }
 }

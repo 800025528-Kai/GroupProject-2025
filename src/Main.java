@@ -72,6 +72,12 @@ public class Main {
     enemies.get(3).getSprite().setPos(100, 100);
     
     int pointIndex = 0;
+    boolean pointEnemy = true;
+    String currentAbility = "basic";
+    boolean randomize = false;
+
+    Battle battle = new Battle(teammates, enemies);
+    battle.init();
     
     Pointer.pointTo(teammates.get(pointIndex).getSprite());
 
@@ -93,7 +99,7 @@ public class Main {
                 }
                 Display.addSprite(Pointer.pointer);
             }
-            if (key == 'q') {
+            if (key == 'p') {
                 gameState = "end";
             }
             if (key == 'c') {
@@ -103,18 +109,80 @@ public class Main {
                 if (pointIndex > 0) {
                     pointIndex = (pointIndex - 1);
                 }
-                Pointer.pointTo(teammates.get(pointIndex).getSprite());
             }
             if (key == 's') {
                 if (pointIndex < teammates.size() - 1) {
                     pointIndex = (pointIndex + 1);
                 }
+            }
+            if (key == 'r') {
+                randomize = !randomize;
+            }
+            if (key == '1') {
+                if (battle.getActionBar().getCurrentAction().Character().getAbilities().get(0).targetsEnemy()) {
+                    pointEnemy = true;
+                }
+                else {
+                    pointEnemy = false;
+                }
+                if(currentAbility == "basic"){
+                    battle.doBasic(pointIndex);
+                }
+                else{
+                    currentAbility = "basic";
+                }
+            }
+            if(key == '2'){
+                if (battle.getActionBar().getCurrentAction().Character().getAbilities().get(1).targetsEnemy()) {
+                    pointEnemy = true;
+                }
+                else {
+                    pointEnemy = false;
+                }
+                if(currentAbility == "skill"){
+                    battle.doSkill(pointIndex);
+                }
+                else{
+                    currentAbility = "skill";
+                }
+            }
+            if(key == '3'){
+                if (battle.getActionBar().getCurrentAction().Character().getAbilities().get(2).targetsEnemy()) {
+                    pointEnemy = true;
+                }
+                else {
+                    pointEnemy = false;
+                }
+                if (currentAbility == "ultimate") {
+                    battle.doUltimate(pointIndex);
+                }
+                else {
+                    currentAbility = "ultimate";
+                }
+            }
+            if (pointEnemy) {
+                Pointer.pointTo(enemies.get(pointIndex).getSprite());
+            } 
+            else {
                 Pointer.pointTo(teammates.get(pointIndex).getSprite());
             }
-            Display.updateScreen();
+            if (!randomize) {
+                Display.updateScreen();
+            }
+            if (key == 'i') {
+                ArrayList<String> files = new ArrayList<String>();
+                files.add("car-horn.wav");
+                files.add("collectathon.wav");
+                files.add("echomorph-hpf.wav");
+                for (String file : files) {
+                    AudioPlayer.load(file.split("\\.")[0], "res/sfx/" + file);
+                }
+                AudioPlayer.play(Math.random() < 0.5 ? "car-horn" : "collectathon", false);
+            }
             Display.drawScreen();
             terminal.writer().println("TeamHP: " + teammates.get(0).hp() + " " + teammates.get(1).hp() + " " + teammates.get(2).hp() + " " + teammates.get(3).hp() + "\n"
             + "EnemyHP: " + enemies.get(0).hp() + " " + enemies.get(1).hp() + " " + enemies.get(2).hp() + " " + enemies.get(3).hp());
+            terminal.writer().println("action: " + battle.getActionBar().getActionOrder());
         }
         terminal.writer().flush();
         nextFrameTime = FramePacer.waitForNextFrame(nextFrameTime, FRAME_DURATION_NS);

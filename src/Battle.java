@@ -2,20 +2,21 @@ package src;
 import java.util.ArrayList;
 
 public class Battle {
-    private ArrayList<Character> teammates;
-    private ArrayList<Character> enemies;
-    private ArrayList<Pair> actionOrder;
+    private static ArrayList<Character> teammates;
+    private static ArrayList<Character> enemies;
+    private ActionBar actionBar;
+    
 
-    public Battle(ArrayList<Character> teammates, ArrayList<Character> enemies, ArrayList<Pair> actionOrder) {
+    public Battle(ArrayList<Character> teammates, ArrayList<Character> enemies) {
         this.teammates = teammates;
         this.enemies = enemies;
-        this.actionOrder = actionOrder;
+        this.actionBar = new ActionBar();
     }
 
-    public ArrayList<Character> getTeammates() {
+    public static ArrayList<Character> getTeammates() {
         return teammates;
     }
-    public ArrayList<Character> getEnemies() {
+    public static ArrayList<Character> getEnemies() {
         return enemies;
     }
     
@@ -27,8 +28,60 @@ public class Battle {
         return teammates.get(index);
     }
 
-    public void doAction(int index, Character self, Character target) {
-        
+    public void init(){
+        for (Character c : teammates){
+            actionBar.addCharacter(c);
+        }
+        for (Character c : enemies){
+            actionBar.addCharacter(c);
+        }
+        actionBar.next();
+    }
+
+    public ActionBar getActionBar() {
+        return actionBar;
+    }
+
+    public void doBasic(int index) {
+        Character self = actionBar.getCurrentAction().Character();
+        if (self.getAbilities().get(0).targetsEnemy()){
+            self.useAbility(0, enemies.get(index));
+        }
+        else{
+            self.useAbility(0, teammates.get(index));
+        }
+        if (actionBar.getCurrentAction().isMainAction()) {
+             actionBar.addCharacter(actionBar.getCurrentAction().Character());
+        }
+        actionBar.next();
+    }
+
+    public void doSkill(int index) {
+        Character self = actionBar.getCurrentAction().Character();
+        if (self.getAbilities().get(1).targetsEnemy()){
+            self.useAbility(1, enemies.get(index));
+        }
+        else{
+            self.useAbility(1, teammates.get(index));
+        }
+        if (actionBar.getCurrentAction().isMainAction()) {
+             actionBar.addCharacter(actionBar.getCurrentAction().Character());
+        }
+        actionBar.next();
+    }
+    
+    public void doUltimate(int index) {
+        Character self = actionBar.getCurrentAction().Character();
+        if (self.getAbilities().get(2).targetsEnemy()){
+            self.useAbility(2, enemies.get(index));
+        }
+        else{
+            self.useAbility(2, teammates.get(index));
+        }
+        if (actionBar.getCurrentAction().isMainAction()) {
+             actionBar.addCharacter(actionBar.getCurrentAction().Character());
+        }
+        actionBar.next();
     }
     
 }

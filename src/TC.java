@@ -2,10 +2,8 @@ package src;
 import java.util.ArrayList;
 public class TC extends Character{ //Template Character
 
-    private ArrayList<Ability> abilities = new ArrayList<Ability>();
-
     public TC(){
-        super("TC", new double[]{1203, 620, 460, 100, 0.05, 0.5, 0, 0, 100, 1, 0, 0, 0, 0, 0, 80, 0, 0, 0, 0, 0, 1203, 5}, true,
+        super("TC", new double[]{1203, 620, 460, 100, 0.05, 0.5, 0, 0, 100, 1, 0, 0, 0, 0, 0, 80, 0, 0, 0, 1, 0, 1203, 5}, true,
         new Sprite(General.convTo2dBool(new int[][]{
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -29,10 +27,12 @@ public class TC extends Character{ //Template Character
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         }), 0, 0)); 
-        abilities.add(new TCBasic());
+        getAbilities().add(new TCBasic());
+        getAbilities().add(new TCSkill());
+        getAbilities().add(new TCUltimate());
     }
 
     public void useAbility(int index, Character target){
-        abilities.get(index).execute(this, target);
+        getAbilities().get(index).execute(this, target);
     }
 }

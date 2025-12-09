@@ -8,6 +8,10 @@ public class Ability {
         this.targetEnemy = targetEnemy;
     }
 
+    public boolean targetsEnemy() {
+        return targetEnemy;
+    }
+
     public void execute(Character a, Character b) {
 
     }

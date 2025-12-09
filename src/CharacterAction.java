@@ -15,4 +15,7 @@ public class CharacterAction {
     public boolean isMainAction() {
         return isMainAction;
     }
+    public boolean isUserInput() {
+        return userInput;
+    }
 }

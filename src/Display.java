@@ -5,8 +5,8 @@ import org.jline.terminal.Terminal;
 import org.jline.terminal.TerminalBuilder;
 
 public class Display {
-    static final int WIDTH = 224;
-    static final int HEIGHT = 126;
+    static final int WIDTH = 208;
+    static final int HEIGHT = 117;
     static boolean[][] screen = new boolean[HEIGHT][WIDTH];
     static ArrayList<Sprite> sprites = new ArrayList<Sprite>();
 
@@ -27,7 +27,6 @@ public class Display {
     }
 
     static void drawScreen() {
-        updateScreen();
         // Move cursor to top-left of terminal
         System.out.print("\u001b[H");
 
@@ -84,6 +83,13 @@ public class Display {
             int X = s.getX();
             int Y = s.getY();
             displaySprite(X, Y, sprite);
+        }
+        for (int i = 0; i < HEIGHT; i++) {
+            for (int j = 0; j < WIDTH; j++) {
+                if (i == 0 || i == HEIGHT - 1 || j == 0 || j == WIDTH - 1) {
+                    screen[i][j] = true;
+                }
+            }
         }
     }
 

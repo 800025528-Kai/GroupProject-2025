@@ -39,8 +39,10 @@ public class CombatEngine {
         }
         else {
             ApplyDamage.applyDamage(attacker, mainDefender, ability.getHitSplit());
-            ApplyDamage.applyDamage(attacker, sideDefender1, ability.getAltHitSplit());
-            ApplyDamage.applyDamage(attacker, sideDefender2, ability.getAltHitSplit());
+            if (sideDefender1 != null)
+                ApplyDamage.applyDamage(attacker, sideDefender1, ability.getAltHitSplit());
+            if (sideDefender2 != null)
+                ApplyDamage.applyDamage(attacker, sideDefender2, ability.getAltHitSplit());
         }
     }
 }
