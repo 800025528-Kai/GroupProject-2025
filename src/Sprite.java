@@ -3,11 +3,13 @@ public class Sprite {
     private boolean[][] sprite;
     private int positionX;
     private int positionY;
+    private boolean visible;
 
     public Sprite(boolean[][] sprite, int positionX, int positionY) {
         this.sprite = sprite;
         this.positionX = positionX;
         this.positionY = positionY;
+        this.visible = true;
     }
 
     public boolean[][] getSprite() {

@@ -1,9 +1,9 @@
 package src;
 import java.util.ArrayList;
-public class TC extends Character{ //Template Character
+public class Bronya extends Character{ //Bronya Character
 
-    public TC(){
-        super("TC", new double[]{1203, 620, 460, 100, 0.05, 0.5, 0, 0, 100, 1, 0, 0, 0, 0, 0, 80, 0, 0, 0, 1, 0, 1203, 5}, true,
+    public Bronya(){
+        super("Bronya", new double[]{1241, 582, 533, 99, 0.05, 0.5, 0, 0, 100, 1, 0, 0, 0, 0, 0, 80, 0, 0, 0, 1, 0, 1241, 5}, true,
         new Sprite(General.convTo2dBool(new int[][]{
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -28,9 +28,9 @@ public class TC extends Character{ //Template Character
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         }), 0, 0)); 
         //25x21 good boy :3
-        getAbilities().add(new TCBasic());
-        getAbilities().add(new TCSkill());
-        getAbilities().add(new TCUltimate());
+        getAbilities().add(new BronyaBasic());
+        getAbilities().add(new BronyaSkill());
+        getAbilities().add(new BronyaUltimate());
     }
 
     public void useAbility(int index, Character target){

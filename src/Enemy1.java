@@ -1,8 +1,8 @@
 package src;
 import java.util.ArrayList;
-public class TC extends Character{ //Template Character
+public class Enemy1 extends Character{ //Template Character
 
-    public TC(){
+    public Enemy1(){
         super("TC", new double[]{1203, 620, 460, 100, 0.05, 0.5, 0, 0, 100, 1, 0, 0, 0, 0, 0, 80, 0, 0, 0, 1, 0, 1203, 5}, true,
         new Sprite(General.convTo2dBool(new int[][]{
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -28,9 +28,9 @@ public class TC extends Character{ //Template Character
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         }), 0, 0)); 
         //25x21 good boy :3
-        getAbilities().add(new TCBasic());
-        getAbilities().add(new TCSkill());
-        getAbilities().add(new TCUltimate());
+        getAbilities().add(new Enemy1Basic());
+        getAbilities().add(new Enemy1Skill());
+        getAbilities().add(new Enemy1Ultimate());
     }
 
     public void useAbility(int index, Character target){

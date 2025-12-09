@@ -86,6 +86,43 @@ public class Main {
 
     while (!gameState.equals("end")) {
         Integer key;
+        while (gameState.equals("win")) {
+            Display.clearScreen();
+            Display.drawScreen();
+            terminal.writer().println("You Win! Press 'p' to exit.");
+            terminal.writer().flush();
+            if ((key = keyEvents.poll()) != null) {
+                if (key == 'p') {
+                    gameState = "end";
+                }
+            }
+        }
+        while (gameState.equals("lose")) {
+            Display.clearScreen();
+            Display.drawScreen();
+            terminal.writer().println("You Lose! Press 'p' to exit.");
+            terminal.writer().flush();
+            if ((key = keyEvents.poll()) != null) {
+                if (key == 'p') {
+                    gameState = "end";
+                }
+            }
+        }
+        while (gameState.equals("enemyTurn")) {
+            double toDo = Math.random() * 3;
+            double target = Math.random() * teammates.size();
+
+            if (toDo < 1) {
+                battle.doBasic((int) target);
+            }
+            else if (toDo < 2) {
+                battle.doSkill((int) target);
+            }
+            else {
+                battle.doUltimate((int) target);
+            }
+
+        }
         while ((gameState.equals("input") && (key = keyEvents.poll()) != null)) {
             if (key == 'k') {
                 for (Character c : teammates) {
@@ -119,6 +156,7 @@ public class Main {
                 randomize = !randomize;
             }
             if (key == '1') {
+                // hide pointer if is aoe
                 if (battle.getActionBar().getCurrentAction().Character().getAbilities().get(0).targetsEnemy()) {
                     pointEnemy = true;
                 }

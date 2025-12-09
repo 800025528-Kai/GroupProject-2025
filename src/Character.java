@@ -35,6 +35,12 @@ public class Character{
         return sprite;
     }
     
+    public void tick() {
+        for (StatusEffect a : buffs) {
+            a.setDuration(a.duration() - 1);
+        }
+        buffs.removeIf(a -> a.duration() <= 0);
+    }
 
     public void applyBuffs(){
         stats = baseStats.clone();
@@ -71,6 +77,12 @@ public class Character{
         stats[0] += change;
         stats[0] = General.min(stats[0], stats[21]);
         stats[0] = General.max(stats[0], 0);
+    }
+
+    public void modifyEnergy(double change){
+        stats[22] += change;
+        stats[22] = General.min(stats[22], stats[8]);
+        stats[22] = General.max(stats[22], 0);
     }
 
     //getters

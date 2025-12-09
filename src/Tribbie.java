@@ -1,9 +1,9 @@
 package src;
 import java.util.ArrayList;
-public class TC extends Character{ //Template Character
+public class Tribbie extends Character{ //Tribbie Character
 
-    public TC(){
-        super("TC", new double[]{1203, 620, 460, 100, 0.05, 0.5, 0, 0, 100, 1, 0, 0, 0, 0, 0, 80, 0, 0, 0, 1, 0, 1203, 5}, true,
+    public Tribbie(){
+        super("Tribbie", new double[]{1047, 523, 727, 96, 0.05, 0.5, 0, 0, 100, 1, 0, 0, 0, 0, 0, 80, 0, 0, 0, 1, 0, 1047, 5}, true,
         new Sprite(General.convTo2dBool(new int[][]{
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
@@ -28,12 +28,16 @@ public class TC extends Character{ //Template Character
         {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0},
         }), 0, 0)); 
         //25x21 good boy :3
-        getAbilities().add(new TCBasic());
-        getAbilities().add(new TCSkill());
-        getAbilities().add(new TCUltimate());
+        getAbilities().add(new TribbieBasic());
+        getAbilities().add(new TribbieSkill());
+        getAbilities().add(new TribbieUltimate());
     }
 
     public void useAbility(int index, Character target){
         getAbilities().get(index).execute(this, target);
+    }
+
+    public double atk() {
+        return super.maxHP();
     }
 }

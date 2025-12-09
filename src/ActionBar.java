@@ -81,6 +81,18 @@ public class ActionBar {
             if (currentAction.isUserInput()) {
                 Main.gameState = "input";
             }
+            if (currentAction.isMainAction()) {
+                currentAction.Character().tick();
+            }
+        }
+    }
+
+    public void removeCharacter(Character c){
+        for (int i = 0; i < actionOrder.size(); i++) {
+            if (actionOrder.get(i).getChar().getName().equals(c.getName())) {
+                actionOrder.remove(i);
+                break;
+            }
         }
     }
 

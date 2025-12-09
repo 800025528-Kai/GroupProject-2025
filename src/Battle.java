@@ -4,7 +4,7 @@ import java.util.ArrayList;
 public class Battle {
     private static ArrayList<Character> teammates;
     private static ArrayList<Character> enemies;
-    private ActionBar actionBar;
+    private static ActionBar actionBar;
     
 
     public Battle(ArrayList<Character> teammates, ArrayList<Character> enemies) {
@@ -38,7 +38,7 @@ public class Battle {
         actionBar.next();
     }
 
-    public ActionBar getActionBar() {
+    public static ActionBar getActionBar() {
         return actionBar;
     }
 
@@ -54,6 +54,7 @@ public class Battle {
              actionBar.addCharacter(actionBar.getCurrentAction().Character());
         }
         actionBar.next();
+        checks();
     }
 
     public void doSkill(int index) {
@@ -68,6 +69,7 @@ public class Battle {
              actionBar.addCharacter(actionBar.getCurrentAction().Character());
         }
         actionBar.next();
+        checks();
     }
     
     public void doUltimate(int index) {
@@ -82,6 +84,30 @@ public class Battle {
              actionBar.addCharacter(actionBar.getCurrentAction().Character());
         }
         actionBar.next();
+        checks();
+    }
+
+    public void checks() {
+        if (teammates.size() == 0) {
+            Main.gameState = "loss";
+        }
+        else if (enemies.size() == 0) {
+            Main.gameState = "win";
+        }
+        for (Character c : teammates) {
+            if (c.hp() <= 0) {
+                teammates.remove(c);
+                actionBar.removeCharacter(c);
+                break;
+            }
+        }
+        for (Character c : enemies) {
+            if (c.hp() <= 0) {
+                enemies.remove(c);
+                actionBar.removeCharacter(c);
+                break;
+            }
+        }
     }
     
 }
